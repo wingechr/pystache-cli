@@ -1,1 +1,1 @@
-# pystache-cli
+# Extended command line client for pystache
