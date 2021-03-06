@@ -9,20 +9,16 @@ if __name__ == "__main__":
 
     setup(
         packages=[pkg.__name__],
-        install_requires=[
-            "pystache"
-        ],
+        install_requires=["pystache"],
         name=pkg.__name__,
-        description=pkg.__doc__.replace('\n', ' '),  # should be one line
+        description=pkg.__doc__.replace("\n", " "),  # should be one line
         long_description=long_description,
         long_description_content_type="text/markdown",  # text/markdown or text/x-rst or text/plain
         version=pkg.__version__,
         author=pkg.__author__,
         author_email=pkg.__email__,
         url=pkg.__url__,
-        project_urls={
-            "Bug Tracker": pkg.__url__,
-        },
+        project_urls={"Bug Tracker": pkg.__url__,},
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
