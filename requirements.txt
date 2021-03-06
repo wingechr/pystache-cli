@@ -1,1 +1,1 @@
-pystache
+. # get them from setup.py
