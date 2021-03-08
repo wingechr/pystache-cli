@@ -62,7 +62,7 @@ def main():
     )
     ap.add_argument("output_file", help="filepath to save output")
     ap.add_argument("template_file", help="filepath to input template")
-    ap.add_argument("context_file", nargs='?', help="optional filepath to context json")
+    ap.add_argument("context_file", nargs="?", help="optional filepath to context json")
     ap.add_argument("--partial_paths", "-p", nargs="*")
     ap.add_argument("--partial_file_extension", "-x", default="")
     ap.add_argument("--file_encoding", "-e", default="utf-8")
