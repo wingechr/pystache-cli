@@ -10,19 +10,9 @@ if __name__ == "__main__":
 
     setup(
         packages=[pkg.__name__],
-        keywords=['cli', 'pystache', 'template'],
-        install_requires=[
-            "pystache"
-        ],
-        extras_require={
-            'dev': [
-                "black",
-                "bumpversion",
-                "pip",
-                "twine",
-                "setuptools"
-            ]
-        },
+        keywords=["cli", "pystache", "template"],
+        install_requires=["pystache"],
+        extras_require={"dev": ["black", "bumpversion", "pip", "twine", "setuptools"]},
         name=pkg.__name__,
         description=re.sub("\s+", " ", pkg.__doc__).strip(),  # should be one line
         long_description=long_description,
@@ -34,18 +24,16 @@ if __name__ == "__main__":
         maintainer_email=pkg.__email__,
         url=pkg.__url__,
         download_url=pkg.__url__,
-        platforms=['any'],
-        license='MIT',
+        platforms=["any"],
+        license="Public Domain",
         project_urls={"Bug Tracker": pkg.__url__,},
         classifiers=[
             "Programming Language :: Python :: 3",
-            "License :: OSI Approved :: MIT License",
+            "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
             "Operating System :: OS Independent",
         ],
         entry_points={
-            "console_scripts": [
-                "pystache-cli = pystache_cli.pystache_cli:main"
-            ]
+            "console_scripts": ["pystache-cli = pystache_cli.pystache_cli:main"]
         },
         package_data={
             # 'package.module: [file_patterns]'  # better to use MANIFEST.in
