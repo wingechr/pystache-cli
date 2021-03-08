@@ -6,6 +6,7 @@ usage: pystache-cli [-h] [--loglevel {debug,info,warning,error}]
                     [--partial_paths [PARTIAL_PATHS [PARTIAL_PATHS ...]]]
                     [--partial_file_extension PARTIAL_FILE_EXTENSION]
                     [--file_encoding FILE_ENCODING] [--strict]
+                    [--separators SEPARATORS SEPARATORS]
                     output_file template_file
 
 positional arguments:
@@ -21,4 +22,6 @@ optional arguments:
   --partial_file_extension PARTIAL_FILE_EXTENSION, -x PARTIAL_FILE_EXTENSION
   --file_encoding FILE_ENCODING, -e FILE_ENCODING
   --strict, -s          if set: raise exception on missing keys
+  --separators SEPARATORS SEPARATORS
+                        left and right separator (default is '{{' '}}')
 ```

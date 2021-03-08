@@ -1,5 +1,5 @@
 import re
-from setuptools import setup
+from setuptools import setup, find_packages
 
 import pystache_cli as pkg
 
@@ -9,10 +9,12 @@ if __name__ == "__main__":
         long_description = file.read()
 
     setup(
-        packages=[pkg.__name__],
+        packages=find_packages(),
         keywords=["cli", "pystache", "template"],
         install_requires=["pystache"],
-        extras_require={"dev": ["black", "bumpversion", "pip", "twine", "setuptools"]},
+        extras_require={
+            "dev": ["black", "bumpversion", "pip", "twine", "setuptools", "nose"]
+        },
         name=pkg.__name__,
         description=re.sub("\s+", " ", pkg.__doc__).strip(),  # should be one line
         long_description=long_description,
@@ -35,7 +37,5 @@ if __name__ == "__main__":
         entry_points={
             "console_scripts": ["pystache-cli = pystache_cli.pystache_cli:main"]
         },
-        package_data={
-            # 'package.module: [file_patterns]'  # better to use MANIFEST.in
-        },
+        package_data={"tests": ["data/**"]},
     )

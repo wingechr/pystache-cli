@@ -12,15 +12,21 @@ LOG_FMT = "[%(asctime)s %(levelname)7s] %(message)s"
 def render(
     output_file,
     template_file,
-    context_file,
-    file_encoding,
-    partial_file_extension,
-    partial_paths,
-    strict,
+    context_file=None,
+    file_encoding=None,
+    partial_file_extension=None,
+    partial_paths=None,
+    strict=None,
+    separators=None,
 ):
     # read template
     with open(template_file, encoding=file_encoding) as file:
         template = file.read()
+
+    if separators:
+        # add modified separators at beginning of template
+        separators = "{{=%s %s=}}" % tuple(separators)
+        template = separators + template
 
     # read context
     if context_file:
@@ -65,6 +71,9 @@ def main():
         "-s",
         action="store_true",
         help="if set: raise exception on missing keys",
+    )
+    ap.add_argument(
+        "--separators", nargs=2, help="left and right separator (default is '{{' '}}')"
     )
     kwargs = vars(ap.parse_args())
     loglevel = getattr(logging, kwargs.pop("loglevel").upper())
