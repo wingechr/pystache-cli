@@ -47,7 +47,7 @@ def render(
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser("pystache-cli")
     ap.add_argument(
         "--loglevel",
         "-l",
