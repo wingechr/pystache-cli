@@ -18,6 +18,7 @@ def render(
     partial_paths=None,
     strict=None,
     separators=None,
+    remove_cr=False
 ):
     # read template
     with open(template_file, encoding=file_encoding) as file:
@@ -48,6 +49,10 @@ def render(
         missing_tags="strict" if strict else "ignore",  # raise error on missing tags
     )
     result = renderer.render(template, context)
+    # pystache messes with linebreaks when partials have windows style line breaks
+    # so we have this option to remove ALL carriage returns
+    if remove_cr:
+        result = result.replace('\r', '')
     with open(output_file, "w", encoding=file_encoding) as file:
         file.write(result)
 
@@ -66,6 +71,7 @@ def main():
     ap.add_argument("--partial_paths", "-p", nargs="*")
     ap.add_argument("--partial_file_extension", "-x", default="")
     ap.add_argument("--file_encoding", "-e", default="utf-8")
+    ap.add_argument("--remove-cr", action="store_true", help="remove carriage return \\r from result (because pystache messes up partials with windows style linebreaks)")
     ap.add_argument(
         "--strict",
         "-s",
