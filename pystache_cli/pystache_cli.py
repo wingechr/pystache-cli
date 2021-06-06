@@ -12,7 +12,7 @@ LOG_FMT = "[%(asctime)s %(levelname)7s] %(message)s"
 def render(
     output_file,
     template_file,
-    context_file=None,
+    context_files=None,
     file_encoding=None,
     partial_file_extension=None,
     partial_paths=None,
@@ -30,12 +30,11 @@ def render(
         template = separators + template
 
     # read context
-    if context_file:
-        with open(context_file, encoding=file_encoding) as file:
-            context = json.load(file)
-    else:
-        context = {}
-
+    context = {}
+    for cfp in context_files or []:
+        with open(cfp, encoding=file_encoding) as file:
+            context.update(json.load(file))
+    
     if not partial_file_extension:
         # use same as template file
         _, partial_file_extension = os.path.splitext(template_file)
@@ -67,7 +66,7 @@ def main():
     )
     ap.add_argument("output_file", help="filepath to save output")
     ap.add_argument("template_file", help="filepath to input template")
-    ap.add_argument("context_file", nargs="?", help="optional filepath to context json")
+    ap.add_argument("context_files", nargs="*", help="optional filepath to context json files that will be merged")
     ap.add_argument("--partial_paths", "-p", nargs="*")
     ap.add_argument("--partial_file_extension", "-x", default="")
     ap.add_argument("--file_encoding", "-e", default="utf-8")

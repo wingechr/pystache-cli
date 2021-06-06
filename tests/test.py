@@ -39,7 +39,7 @@ class TestTemplate(unittest.TestCase):
         render(
             output_file=self.outfile,
             template_file=os.path.join(self.datadir, "template.json"),
-            context_file=os.path.join(self.datadir, "context.json"),
+            context_files=[os.path.join(self.datadir, "context.json"), os.path.join(self.datadir, "context2.json")],
             partial_paths=[os.path.join(self.datadir, "partials")],
             file_encoding=self.encoding,
             strict=True,
@@ -51,5 +51,6 @@ class TestTemplate(unittest.TestCase):
         with open(self.outfile, encoding=self.encoding) as file:
             text = file.read()
             data = json.loads(text)
-            self.assertEqual(data["value"], 100)
+            self.assertEqual(data["value1"], 101)
+            self.assertEqual(data["value2"], 99)
             self.assertEqual(len(data["list"]), 3)
