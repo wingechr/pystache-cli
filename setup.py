@@ -1,7 +1,4 @@
-import re
-from setuptools import setup, find_packages
-
-import pystache_cli as pkg
+from setuptools import setup
 
 if __name__ == "__main__":
 
@@ -9,26 +6,21 @@ if __name__ == "__main__":
         long_description = file.read()
 
     setup(
-        packages=find_packages(),
+        packages=['pystache_cli'],
         keywords=["cli", "pystache", "template"],
-        install_requires=["pystache"],
-        extras_require={
-            "dev": ["black", "bumpversion", "pip", "twine", "setuptools", "nose"]
-        },
-        name=pkg.__name__,
-        description=re.sub("\s+", " ", pkg.__doc__).strip(),  # should be one line
+        install_requires=["pystache"],        
+        name='pystache-cli',
+        description="Extended command line client for pystache",
         long_description=long_description,
         long_description_content_type="text/markdown",  # text/markdown or text/x-rst or text/plain
-        version=pkg.__version__,
-        author=pkg.__author__,
-        author_email=pkg.__email__,
-        maintainer=pkg.__author__,
-        maintainer_email=pkg.__email__,
-        url=pkg.__url__,
-        download_url=pkg.__url__,
+        version="0.3.4",
+        author="Christian Winger",
+        author_email="c@wingechr.de",
+        url="https://github.com/wingechr/pystache-cli",
+        download_url="https://github.com/wingechr/pystache-cli",
         platforms=["any"],
         license="Public Domain",
-        project_urls={"Bug Tracker": pkg.__url__,},
+        project_urls={"Bug Tracker": "https://github.com/wingechr/pystache-cli",},
         classifiers=[
             "Programming Language :: Python :: 3",
             "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
